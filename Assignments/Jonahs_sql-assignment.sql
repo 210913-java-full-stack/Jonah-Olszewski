@@ -164,38 +164,38 @@ ORDER BY SUM(a.balance) DESC;
 ###########################################################
 
 # Get a list of all customers with the last name "Smith".
-#SELECT c.name 
-#FROM customers c
-#WHERE name Like '%Smith';
+SELECT c.name 
+FROM customers c
+WHERE name Like '%Smith';
 
 # Get the total balance of all accounts held by the Smiths.
-#SELECT SUM(balance) AS "Smiths total balanc" FROM customers c
-#JOIN accounts_customers ac ON c.customer_id = ac.customer_id
-#JOIN accounts a ON ac.account_id = a.account_id
-#JOIN address ad ON c.address_id = ad.address_id
-#WHERE name Like '%Smith';
+SELECT SUM(balance) AS "Smiths total balanc" FROM customers c
+JOIN accounts_customers ac ON c.customer_id = ac.customer_id
+JOIN accounts a ON ac.account_id = a.account_id
+JOIN address ad ON c.address_id = ad.address_id
+WHERE name Like '%Smith';
 
 # Get the name and address of any customer with less than $50 in an account. (No duplicates!)
-#SELECT c.name, ad.address, a.balance
-#FROM customers c
-#JOIN accounts_customers ac ON c.customer_id = ac.customer_id
-#JOIN accounts a ON ac.account_id = a.account_id
-#JOIN address ad ON c.address_id = ad.address_id
-#WHERE a.balance < 50;
+SELECT c.name, ad.address, a.balance
+FROM customers c
+JOIN accounts_customers ac ON c.customer_id = ac.customer_id
+JOIN accounts a ON ac.account_id = a.account_id
+JOIN address ad ON c.address_id = ad.address_id
+WHERE a.balance < 50;
 
 # Get a list of all the customers who live in Texas.
-#SELECT c.name
-#FROM customers c
-#JOIN address ad ON c.address_id = ad.address_id
-#WHERE ad.state = 'TX';
+SELECT c.name
+FROM customers c
+JOIN address ad ON c.address_id = ad.address_id
+WHERE ad.state = 'TX';
 
 # Add $100 gift to any accounts belonging to customers in New York
-#UPDATE accounts 
-#JOIN accounts_customers ac ON accounts.account_id = ac.account_id 
-#JOIN customers c ON c.customer_id = ac.customer_id 
-#JOIN address ad ON c.address_id = ad.address_id
-#SET balance = (balance + 100)
-#WHERE state = 'NY';
+UPDATE accounts 
+JOIN accounts_customers ac ON accounts.account_id = ac.account_id 
+JOIN customers c ON c.customer_id = ac.customer_id 
+JOIN address ad ON c.address_id = ad.address_id
+SET balance = (balance + 100)
+WHERE state = 'NY';
 
 # Transfer $199.99 from Jason Smith to Amanda Smith (This requires 2 statements) **
 UPDATE accounts a
@@ -209,13 +209,13 @@ JOIN customers c ON c.customer_id = ac.customer_id
 SET a.balance = (balance + 199.99) WHERE ac.account_id = 900003;
 
 # Change Amanda Smith's last name to "Lastname"
-#UPDATE customers c 
-#SET c.name = 'Amanda Lastname'
-#WHERE c.name = 'Amanda Smith';
+UPDATE customers c 
+SET c.name = 'Amanda Lastname'
+WHERE c.name = 'Amanda Smith';
 
 # Check tables
-SELECT *
-FROM customers c
-JOIN accounts_customers ac ON c.customer_id = ac.customer_id 
-JOIN accounts a ON ac.account_id = a.account_id
-ORDER BY a.balance DESC;
+#SELECT *
+#FROM customers c
+#JOIN accounts_customers ac ON c.customer_id = ac.customer_id 
+#JOIN accounts a ON ac.account_id = a.account_id
+#ORDER BY a.balance DESC;
