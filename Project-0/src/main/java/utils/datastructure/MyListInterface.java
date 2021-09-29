@@ -1,18 +1,18 @@
-package utils;
+package utils.datastructure;
 
 /**
  * Custom list interface we will be used to implement our own list data structure
- *     //add stuff
- *         //add one item - add(E e)
- *         //add one item in a specific index - add(E e, int index)
- *     //get stuff
- *         //get by index - get(int index)
- *     //delete stuff
- *         //remove at index - remove(int index)
- *         //remove all - clear()
- *     //size()
- *     //contains(E e) //find?
- * */
+ * //add stuff
+ * //add one item - add(E e)
+ * //add one item in a specific index - add(E e, int index)
+ * //get stuff
+ * //get by index - get(int index)
+ * //delete stuff
+ * //remove at index - remove(int index)
+ * //remove all - clear()
+ * //size()
+ * //contains(E e) //find?
+ */
 public interface MyListInterface<E> {
     //size()
     int size();
@@ -33,7 +33,7 @@ public interface MyListInterface<E> {
     void clear();
 
     //contains(E e)
-    int contains(E e);
+    boolean contains(E e);
 
 
 }
