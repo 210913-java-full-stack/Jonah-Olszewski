@@ -1,0 +1,45 @@
+{
+	"folders": {},
+	"connections": {
+		"dbeaver-sample-database-sqlite-1": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "DBeaver Sample Database (SQLite)",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\jonah\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1\\Chinook.db",
+				"url": "jdbc:sqlite:C:\\Users\\jonah\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1\\Chinook.db",
+				"type": "dev"
+			}
+		},
+		"mariaDB-17c19920482-3590fcd3c6262314": {
+			"provider": "mysql",
+			"driver": "mariaDB",
+			"name": "traing-db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "traing-db.ck4tluvakbuz.us-east-2.rds.amazonaws.com",
+				"port": "3306",
+				"url": "jdbc:mysql://traing-db.ck4tluvakbuz.us-east-2.rds.amazonaws.com:3306/",
+				"home": "mysql_client",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
