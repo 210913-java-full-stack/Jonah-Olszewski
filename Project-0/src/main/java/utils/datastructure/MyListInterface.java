@@ -1,5 +1,7 @@
 package utils.datastructure;
 
+import java.util.Iterator;
+
 /**
  * Custom list interface we will be used to implement our own list data structure
  * //add stuff
@@ -36,4 +38,5 @@ public interface MyListInterface<E> {
     boolean contains(E e);
 
 
+    Iterator<E> iterator();
 }

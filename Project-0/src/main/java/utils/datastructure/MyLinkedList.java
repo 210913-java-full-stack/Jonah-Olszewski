@@ -1,5 +1,7 @@
 package utils.datastructure;
 
+import java.util.Iterator;
+
 public class MyLinkedList<T> implements MyListInterface<T> {
     private Node<T> head;
     private Node<T> tail;
@@ -99,6 +101,11 @@ public class MyLinkedList<T> implements MyListInterface<T> {
 //            index++;
 //        }
         return true;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
     }
 
     /**

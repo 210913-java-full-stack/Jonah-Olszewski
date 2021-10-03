@@ -17,22 +17,26 @@ public class ConnectionManager {
     /*
     This is a static method for returning a connection in the factory singleton design pattern
      */
-    public static Connection getConnection() throws SQLException, IOException {
+    public static Connection getConnection() {
         if(conn == null) {
-            Properties props = new Properties();
-            FileReader connectionProperties = new FileReader("src/main/resources/connection.properties");
-            props.load(connectionProperties);
+            try {
+                Properties props = new Properties();
+                FileReader connectionProperties = new FileReader("src/main/resources/connection.properties");
+                props.load(connectionProperties);
 
-            //"jdbc:mariadb://hostname:port/databaseName?user=username&password=password"
-            String connString = "jdbc:mariadb://" +
-                    props.getProperty("hostname") + ":" +
-                    props.getProperty("port") + "/" +
-                    props.getProperty("databaseName") + "?user=" +
-                    props.getProperty("user") + "&password=" +
-                    props.getProperty("password");
+                //"jdbc:mariadb://hostname:port/databaseName?user=username&password=password"
+                String connString = "jdbc:mariadb://" +
+                        props.getProperty("hostname") + ":" +
+                        props.getProperty("port") + "/" +
+                        props.getProperty("databaseName") + "?user=" +
+                        props.getProperty("user") + "&password=" +
+                        props.getProperty("password");
 
 
-            conn = DriverManager.getConnection(connString);
+                conn = DriverManager.getConnection(connString);
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
         }
         return conn;
     }

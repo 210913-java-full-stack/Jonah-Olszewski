@@ -12,35 +12,36 @@ DROP TABLE IF EXISTS accounts_customers;
 
 CREATE TABLE accounts_customers 
 (
-	junction_id INT AUTO_INCREMENT,
-	accountId 	INT NOT NULL ,
-	customerId INT NOT NULL,
-	INDEX (accountId),
-	INDEX (customerId),
-	CONSTRAINT accounts_customers_fk PRIMARY KEY (junction_id)
-);
-
-
-CREATE TABLE accounts
-(
-    accountId 		INT NOT NULL,
-    accountType		VARCHAR(200),
-    balance 		DECIMAL (10, 2),
-    CONSTRAINT accounts_pk PRIMARY KEY (accountId), 
-    CONSTRAINT accounts_accounts_customers_fk FOREIGN KEY (accountId) REFERENCES accounts_customers (accountId)
+	junction_id		INT NOT NULL AUTO_INCREMENT,
+	account_id 		INT NOT NULL,
+	customer_id 	INT NOT NULL,
+	INDEX (account_id),
+	INDEX (customer_id),
+	CONSTRAINT accounts_customers_pk PRIMARY KEY (junction_id)
+	#CONSTRAINT accounts_customers_account_fk  FOREIGN KEY (account_id) REFERENCES accounts (account_id),
+	#CONSTRAINT accounts_customers_customer_fk FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
 );
 
 CREATE TABLE customers
 (
-    customerId 			INT NOT NULL,
-    fistName 			VARCHAR(200),
-    lastName 			VARCHAR(200),
-    userName 			VARCHAR(200),
-	passWord 			VARCHAR(200),
-	email 				VARCHAR(200),
+    customer_id 	INT(10) NOT NULL,
+    first_name 		VARCHAR(20),
+    last_name 		VARCHAR(20),
+    username 		VARCHAR(20),
+	password 		VARCHAR(20),
+	email 			VARCHAR(40),
     
-    CONSTRAINT customers_pk PRIMARY KEY (customerId), 
-    CONSTRAINT customers_accounts_customers_fk FOREIGN KEY (customerId) REFERENCES accounts_customers (customerId)
+    CONSTRAINT customers_pk PRIMARY KEY (customer_id),
+    CONSTRAINT customers_accounts_customers_fk FOREIGN KEY (customer_id) REFERENCES accounts_customers (customer_id)
+);
+
+CREATE TABLE accounts
+(
+    account_id 		INT(10) NOT NULL,
+    account_type	VARCHAR(20),
+    balance 		DECIMAL (10, 2),
+    CONSTRAINT accounts_pk PRIMARY KEY (account_id), 
+    CONSTRAINT accounts_accounts_customers_fk FOREIGN KEY (account_id) REFERENCES accounts_customers (account_id)
 );
 
 
@@ -49,20 +50,18 @@ CREATE TABLE customers
 ################# POPULATE FRESH DATABASE #################
 ###########################################################
 
-INSERT INTO accounts_customers (customerId, accountId) VALUES (0001, 900001);
-INSERT INTO accounts_customers (customerId, accountId) VALUES (0002, 900002);
-INSERT INTO accounts_customers (customerId, accountId) VALUES (0003, 900003);
+INSERT INTO accounts_customers (customer_id, account_id) VALUES (001, 001);
+INSERT INTO accounts_customers (customer_id, account_id) VALUES (002, 002);
+INSERT INTO accounts_customers (customer_id, account_id) VALUES (003, 003);
+
+INSERT INTO accounts (account_id, account_type, balance) VALUES (001, "Chekings" ,1500.50);
+INSERT INTO accounts (account_id, account_type, balance) VALUES (002, "Savings" ,2780.25);
+INSERT INTO accounts (account_id, account_type, balance) VALUES (003, "Chekings" ,150);
 
 
-INSERT INTO customers (customerId, fistName, lastName, userName, passWord, email) VALUES (0001, "Jullye", "Jones", "User123", "Pass123", "someEmail1@spiral.org");
-INSERT INTO customers (customerId, fistName, lastName, userName, passWord, email) VALUES (0002, "Rick", "Mcdowell", "Test1", "ABCDEFG!", "someEmail2@gmail.com");
-INSERT INTO customers (customerId, fistName, lastName, userName, passWord, email) VALUES (0003, "Mike", "Oliver", "MkXo001", "dqS%DYnB^yDY", "someEmail3@revature.net");
-
-
-INSERT INTO accounts (accountId, accountType, balance) VALUES (900001, "Chekings" ,1500.50);
-INSERT INTO accounts (accountId, accountType, balance) VALUES (900002, "Savings" ,2780.25);
-INSERT INTO accounts (accountId, accountType, balance) VALUES (900003, "Chekings" ,150);
-
+INSERT INTO customers (customer_id, first_name, last_name, username, password, email) VALUES (001, "Jullye", "Jones", "User123", "Pass123", "someEmail1@spi.org");
+INSERT INTO customers (customer_id, first_name, last_name, username, password, email) VALUES (002, "Rick", "Mcdowell", "Test1", "ABCDEFG!", "someEmail2@gmail.com");
+INSERT INTO customers (customer_id, first_name, last_name, username, password, email) VALUES (003, "Mike", "Oliver", "MkXo001", "dqS%DYnB^yDY", "someEmail3@rev.net");
 
 
 ###########################################################
@@ -70,6 +69,6 @@ INSERT INTO accounts (accountId, accountType, balance) VALUES (900003, "Chekings
 ###########################################################
 
 select * from customers c 
-join accounts_customers ac on c.customerId = ac.customerId
-join accounts a on ac.accountId = a.accountId
+join accounts_customers ac on c.customer_id = ac.customer_id
+join accounts a on ac.account_id = a.account_id
 

@@ -1,40 +1,35 @@
 package DAOs;
 
-import models.BankAccount;
-import models.BankAccountType;
+import exceptions.InvalidAccountTypeException;
+import models.Account;
 import utils.datastructure.MyArrayList;
 
 import java.sql.SQLException;
 
-public interface BankingAccountCRUD<T> {
+public interface AccountCRUD {
     //create
     //save object to database method
-    public void save(T t) throws SQLException;
-
-    public int insertBankAccount(BankAccount bankAccount);
+    //public int insertAccount(Account account);
 
 
-
-    //public int insertBankAccountLink(BankAccountLink bankAccountLink);
+    void newAccount(Account account) throws SQLException, InvalidAccountTypeException;
 
     //read
     //query data from database, fill in empty model object
-    public T getByID(int id);
-    public MyArrayList<T> getAll();
+    public Account getAccountById(int accountId);
+    public MyArrayList<Account> getAllAccounts();
+    public MyArrayList<Account> getAccountsByCustomerId(int customerId);
+    //public MyArrayList<Account> getAllSavingsAccounts();
 
-    public MyArrayList<BankAccount> getAllBankAccounts();
-    public MyArrayList<BankAccount> getBankAccountsByCustomerId(int customerId);
-    public MyArrayList<BankAccount> getAllSavingsBankAccounts();
-
-    public MyArrayList<BankAccountType> getAllTypes();
 
     //public ToDoItem getItemByKeyword(String keyword); //SELECT * FROM items WHERE message LIKE "%KEYWORD%"
     //update
-    // we will use the save() method for updates
+    //public void updateAccount(Account account);
+
+    int getAccountId() throws SQLException;
 
 
     //delete
     //remove by ID
-//    public void deleteCustomerByID(int customerId) throws SQLException;
-//    public void deleteBankAccountByID(int accountId) throws SQLException;
+    public void deleteAccountById(int id);
 }

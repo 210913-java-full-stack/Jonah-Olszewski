@@ -14,7 +14,9 @@
 ////////////////////////////////// THIS STUFF IS HINTS ABOUT IMPLEMENTING ARRAYLIST ////////////////////////////////////
 package utils.datastructure;
 
-public class MyArrayList<E> implements MyListInterface<E>{
+import java.util.Iterator;
+
+public class MyArrayList<E> implements MyListInterface<E>, Iterable<E>{
     private int size;                                       // keeps track of the number of elements in the array
     private int max_size;                                  // keeps track of the current max size, in case we exceed and need to grow the array
     private Object[] array;             // stores the elements in an array
@@ -137,5 +139,31 @@ public class MyArrayList<E> implements MyListInterface<E>{
                     return i;
         }
         return -1;
+    }
+
+
+
+    // returns an iterator object to traverse the linked list
+    @Override
+    public Iterator<E> iterator() {
+         Iterator<E> iE = new Iterator<E>() {
+
+            private int currentIndex = 0;
+
+            // checks if the linked list has another node, testing if the cursor points to a node or if it is null
+            // return true if the cursor points to a node, false if the cursor node reference is null
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size && array[currentIndex] != null;
+            }
+
+            // returns the node the cursor points to, then advances the cursor to the next node
+            //  return the object at the location of the cursor
+            @Override
+            public E next() {
+                return (E) array[currentIndex++];
+            }
+        };
+        return iE;
     }
 }

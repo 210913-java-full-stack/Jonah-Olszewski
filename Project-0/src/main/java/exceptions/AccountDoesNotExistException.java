@@ -1,13 +1,11 @@
 package exceptions;
 
-public class CustomerDoesNotExistException extends Exception{
-    public CustomerDoesNotExistException()
-    {
-        super("Cuas does not exist with that username. Please register or try again with a different username.");
+public class AccountDoesNotExistException extends Exception {
+    public AccountDoesNotExistException() {
+        super("Account does not exist with that username. Please register or try again with a different username.");
     }
 
-    public CustomerDoesNotExistException(String message)
-    {
+    public AccountDoesNotExistException(String message) {
         super(message);
     }
 }

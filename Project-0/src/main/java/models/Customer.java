@@ -2,21 +2,38 @@ package models;
 
 public class Customer {
     private int customerId;
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String passWord;
+   // private static final AtomicInteger count = new AtomicInteger(0); ;
+    private String firstname;
+    private String lastname;
+    private String username;
+    private String password;
     private String email;
 
+    public Customer() {
+        super();
+    }
 
-    public Customer(int customerId, String firstName, String lastName, String userName, String passWord, String email){
+    public Customer(int customerId, String firstname, String lastname, String username, String password, String email){
         this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
         this.email = email;
     }
+
+//    public void printCustomerId(){
+//        System.out.println(this.customerId);
+//    }
+
+    public Customer(String firstname, String lastname, String username, String password, String email) {
+        //this.customerId = count.incrementAndGet();
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    } // this runs in Registration Menu
 
     public int getCustomerId() {
         return this.customerId;
@@ -26,37 +43,38 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
     public String getEmail() {
         return email;
     }
@@ -67,6 +85,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer " + getCustomerId() + " - " + getFirstName() + ", " + getLastName();
+        return "Customer: " + getCustomerId() + " - " + getFirstname() + ", " + getLastname(); // add userName, PassWord, email
     }
 }
